@@ -1,16 +1,14 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function StartPage() {
     return (
         <Container>
             <img src='images/logo.svg' alt='ვარსკვლავისკენ მფრინავი კოსმონავტი' />
-            <button
-                onClick={() => {
-                    console.log('clicked');
-                }}
-            >
-                კითხვარის დაწყება
-            </button>
+            <Link exact to='/second-page'>
+                კითხვარის
+                <br /> დაწყება
+            </Link>
         </Container>
     );
 }
@@ -27,19 +25,21 @@ const Container = styled.div`
     align-items: center;
 
     img {
+        width: 100px;
+        height: 100px;
         margin-bottom: 100px;
     }
-    button {
-        width: 170px;
-        font-weight: 700;
+    a {
+        color: #232323;
         font-size: 30px;
         line-height: 36px;
-        border: 0;
-        background-color: transparent;
+        font-style: normal;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
 
         &:hover {
-            filter: drop-shadow(3px 3px 0px rgba(0, 0, 0, 0.5));
-            /* text-shadow: 1px 1px 0px #ffffff, 3px 3px 0px rgba(0, 0, 0, 0.5); */
+            filter: drop-shadow(0.156vw 0.156vw 0px rgba(0, 0, 0, 0.5));
         }
     }
 `;

@@ -1,18 +1,56 @@
-import styled from "styled-components";
-import StartPage from "./components/StartPage";
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
+
+import StartPage from './components/StartPage';
+const SecondPage = lazy(() => import('./components/second-page/SecondPage'));
 
 function App() {
     return (
-        <Container>
-            <StartPage />
-        </Container>
+        <BrowserRouter>
+            <Container>
+                <Suspense fallback={<Loading>Loading...</Loading>}>
+                    <Switch>
+                        <Route exact path='/'>
+                            <StartPage />
+                        </Route>
+
+                        <Route exact path='/second-page'>
+                            <SecondPage />
+                        </Route>
+
+                        <Route>
+                            <Pde>Page dosn't exist!</Pde>
+                        </Route>
+                    </Switch>
+                </Suspense>
+            </Container>
+        </BrowserRouter>
     );
 }
 
 export default App;
 
 const Container = styled.div`
-    width: 100vw;
-    height: 100vh;
+    position: relative;
+    width: 1920px;
+    height: 1080px;
     background-color: #eaeaea;
+
+    display: flex;
+`;
+
+const Loading = styled.div`
+    text-align: center;
+`;
+
+const Pde = styled.div`
+    width: 100%;
+    height: 100%;
+    font-size: 50px;
+    color: red;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
