@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import StartPage from './components/StartPage';
 const SecondPage = lazy(() => import('./components/second-page/SecondPage'));
+const ThirdPage = lazy(() => import('./components/third-page/ThirdPage'));
 
 function App() {
     return (
@@ -17,6 +18,10 @@ function App() {
 
                         <Route exact path='/second-page'>
                             <SecondPage />
+                        </Route>
+
+                        <Route exact path='/third-page'>
+                            <ThirdPage />
                         </Route>
 
                         <Route>

@@ -14,6 +14,9 @@ function SecondPage() {
                     *-ით მონიშნული ველების შევსება <br /> სავალდებულოა
                 </p>
             </div>
+            <div id='page2WallPaper'>
+                <img src='images/scaning.svg' alt='' />
+            </div>
         </Container>
     );
 }
@@ -41,5 +44,18 @@ const Container = styled.div`
         font-size: 16px;
         line-height: 19px;
         color: #626262;
+    }
+
+    #page2WallPaper {
+        position: absolute;
+        width: 904px;
+        height: 831px;
+        right: 165px;
+        top: 94px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 `;
