@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Head from '../Head';
-import SecondInputs from './SecondInputs';
+import SecondInputs from './SecondForm';
 
 function SecondPage() {
     return (
