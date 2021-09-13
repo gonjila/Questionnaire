@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import Head from '../Head';
+import ForthForm from './ForthForm';
 
 function ForthPage() {
     return (
         <Container>
             <Head pageNumber={3} />
+            <ForthForm />
         </Container>
     );
 }
