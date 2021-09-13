@@ -3,8 +3,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
 import StartPage from './components/StartPage';
+
 const SecondPage = lazy(() => import('./components/second-page/SecondPage'));
 const ThirdPage = lazy(() => import('./components/third-page/ThirdPage'));
+const ForthPage = lazy(() => import('./components/forth-page/ForthPage'));
 
 function App() {
     return (
@@ -22,6 +24,10 @@ function App() {
 
                         <Route exact path='/third-page'>
                             <ThirdPage />
+                        </Route>
+
+                        <Route exact path='/forth-page'>
+                            <ForthPage />
                         </Route>
 
                         <Route>
