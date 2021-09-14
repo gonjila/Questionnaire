@@ -67,9 +67,9 @@ function ThirdForm() {
                     onClick={onQuestion1Yes}
                     {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
-                <div className='label__circle'>
+                {/* <div className='label__circle'>
                     <div className={question1Yes ? 'label__radio label__radio--selected' : 'label__radio'}></div>
-                </div>
+                </div> */}
                 კი
             </label>
 
@@ -83,9 +83,9 @@ function ThirdForm() {
                     onClick={onQuestion1No}
                     {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
-                <div className='label__circle'>
+                {/* <div className='label__circle'>
                     <div className={question1No ? 'label__radio label__radio--selected' : 'label__radio'}></div>
-                </div>
+                </div> */}
                 არა
             </label>
 
@@ -99,11 +99,12 @@ function ThirdForm() {
                     onClick={onQuestion1Now}
                     {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
-                <div className='label__circle'>
+                {/* <div className='label__circle'>
                     <div className={question1Now ? 'label__radio label__radio--selected' : 'label__radio'}></div>
-                </div>
+                </div> */}
                 ახლა მაქვს
             </label>
+            {/* validation */}
             <div className='inputError'>{errors.question1 && <span>{errors.question1.message}</span>}</div>
 
             {question1Yes && (
@@ -119,11 +120,11 @@ function ThirdForm() {
                             onClick={onQuestion2Yes}
                             {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
-                        <div className='label__circle'>
+                        {/* <div className='label__circle'>
                             <div
                                 className={question2Yes ? 'label__radio label__radio--selected' : 'label__radio'}
                             ></div>
-                        </div>
+                        </div> */}
                         კი
                     </label>
 
@@ -137,13 +138,14 @@ function ThirdForm() {
                             onClick={onQuestion2No}
                             {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
-                        <div className='label__circle'>
+                        {/* <div className='label__circle'>
                             <div
                                 className={question2No ? 'label__radio label__radio--selected' : 'label__radio'}
                             ></div>
-                        </div>
+                        </div> */}
                         არა
                     </label>
+                    {/* validation */}
                     <div className='inputError'>{errors.question2 && <span>{errors.question2.message}</span>}</div>
 
                     {question2Yes && (
@@ -166,6 +168,7 @@ function ThirdForm() {
                                 placeholder='ანტისხეულების რაოდენობა'
                                 {...register('antibodiesQuantity', { required: true })}
                             />
+                            {/* validations */}
                             <div className='inputError'>
                                 {errors.testNumber && <span>გთხოვთ, ჩაწერე ტესტის მიახლოებითი რიცხვი</span>}
                             </div>
@@ -188,6 +191,7 @@ function ThirdForm() {
                                 className='page3Inputs'
                                 {...register('date', { required: 'გთხოვთ, ჩაწერო როდის გქონდა Covid-19' })}
                             />
+                            {/* validation */}
                             <div className='inputError'>{errors.date && <span>{errors.date.message}</span>}</div>
                         </>
                     )}
@@ -234,14 +238,14 @@ const Container = styled.form`
         margin-bottom: 29px;
     }
 
-    .label {
+    label {
         font-family: Helvetica Neue LT GEO;
         font-size: 20px;
         font-style: normal;
         font-weight: 400;
         line-height: 24px;
         text-align: left;
-        width: 200px;
+        width: 50%;
         margin-bottom: 18px;
         cursor: pointer;
 
@@ -253,36 +257,12 @@ const Container = styled.form`
         margin-left: 23px;
     }
 
-    .label__input {
-        /* Hide it */
-        display: none;
-    }
-
-    .label__circle {
-        /* Rounded border */
-        border: 1px solid #232323;
-        border-radius: 50%;
-
-        /* Spacing */
-        margin: 0 8px 0 21px;
-        height: 23px;
+    input[type='radio'] {
+        accent-color: #232323;
+        -webkit-accent-color: #232323;
         width: 23px;
-        padding: 2px;
-    }
-
-    .label__radio {
-        /* Rounded border */
-        border-radius: 50%;
-        height: 17px;
-        width: 17px;
-
-        /* For not selected radio */
-        background-color: transparent;
-    }
-
-    .label__radio--selected {
-        /* For selected radio */
-        background-color: #232323;
+        height: 23px;
+        margin: 0 22px;
     }
 
     .page3Inputs {

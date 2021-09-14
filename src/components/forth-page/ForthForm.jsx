@@ -97,6 +97,7 @@ function ForthForm() {
                 />
                 არა
             </label>
+            {/* validation */}
             <div className='inputError'>{errors.question1 && <span>{errors.question1.message}</span>}</div>
 
             {question1Yes && (
@@ -135,6 +136,7 @@ function ForthForm() {
                         />
                         პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე
                     </label>
+                    {/* validation */}
                     <div className='inputError'>{errors.question2 && <span>{errors.question2.message}</span>}</div>
 
                     {question2Unregistered && (
@@ -185,6 +187,7 @@ function ForthForm() {
                         />
                         გადატანილი მაქვს და ვგეგმავ აცრას
                     </label>
+                    {/* validation */}
                     <div className='inputError'>{errors.question3 && <span>{errors.question3.message}</span>}</div>
 
                     {question3Not && (

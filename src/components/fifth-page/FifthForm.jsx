@@ -14,7 +14,7 @@ function FifthForm() {
 
     const onSubmit = data => {
         console.log(data);
-        // history.push('/sixth-page');
+        history.push('/sixth-page');
     };
 
     const onPrevBtnClick = () => {
@@ -23,14 +23,17 @@ function FifthForm() {
 
     return (
         <Container onSubmit={handleSubmit(onSubmit)}>
-            <p>
-                რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო, რომელსაც ჩვენი თანამშრომლები
-                ქმნით, ბევრისთვის არის და ყოფილა წლების განმავლობაში მიზნებისთვის ერთად ბრძოლის მიზეზი, ბევრისთვის
-                კი — ჩვენთან გადმოსვლის.
-                <br />
-                <br /> პანდემიის პერიოდში ერთმანეთსაც იშვიათად ვნახულობთ პირისპირ და ყოველდღიური კომუნიკაციაც
-                გაიშვიათდა.
-            </p>
+            <div id='page5starter'>
+                <p>
+                    რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო, რომელსაც ჩვენი თანამშრომლები
+                    ქმნით, ბევრისთვის არის და ყოფილა წლების განმავლობაში მიზნებისთვის ერთად ბრძოლის მიზეზი,
+                    ბევრისთვის კი — ჩვენთან გადმოსვლის.
+                </p>
+                <p>
+                    პანდემიის პერიოდში ერთმანეთსაც იშვიათად ვნახულობთ პირისპირ და ყოველდღიური კომუნიკაციაც
+                    გაიშვიათდა.
+                </p>
+            </div>
 
             <p>
                 რა სიხშირით შეიძლება გვქონდეს საერთო არაფორმალური ონლაინ შეხვედრები, სადაც ყველა სურვილისამებრ
@@ -56,7 +59,7 @@ function FifthForm() {
                 <input value='თვეში ერთხელ' type='radio' {...register('question1', { required: true })} />
                 თვეში ერთხელ
             </label>
-            {/* errors */}
+            {/* validation  */}
             <div className='inputError'>{errors.question1 && <span>გთხოვთ, აირჩიე ერთ-ერთი</span>}</div>
 
             <p>კვირაში რამდენი დღე ისურვებდი ოფისიდან მუშაობას?*</p>
@@ -84,7 +87,7 @@ function FifthForm() {
             <label>
                 <input value='5' type='radio' {...register('question2', { required: true })} />5
             </label>
-            {/* errors */}
+            {/* validation */}
             <div className='inputError'>{errors.question2 && <span>გთხოვთ, აირჩიე ერთ-ერთი</span>}</div>
 
             <p>რას ფიქრობ ფიზიკურ შეკრებებზე?</p>
@@ -114,6 +117,27 @@ const Container = styled.form`
     display: flex;
     flex-direction: column;
 
+    #page5starter {
+        width: 606px;
+        height: 251px;
+        margin-bottom: 15px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        p {
+            width: auto;
+            height: auto;
+            font-family: Helvetica Neue LT GEO;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 27px;
+            letter-spacing: 0em;
+            text-align: left;
+        }
+    }
+
     p {
         font-family: Helvetica Neue LT GEO;
         font-size: 22px;
@@ -126,24 +150,11 @@ const Container = styled.form`
         height: 83px;
         margin: 30px 0 15px;
 
-        &:first-of-type {
-            font-family: Helvetica Neue LT GEO;
-            font-size: 22px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 27px;
-            letter-spacing: 0em;
-            text-align: left;
-
-            width: 606px;
-            height: 251px;
-            margin: 0;
-        }
-        &:nth-of-type(4),
+        &:nth-of-type(2),
         &:nth-of-type(3) {
             height: 31px;
         }
-        &:nth-of-type(5) {
+        &:nth-of-type(4) {
             height: 60px;
             margin-top: 47px;
         }
