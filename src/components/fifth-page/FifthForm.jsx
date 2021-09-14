@@ -6,7 +6,11 @@ import styled from 'styled-components';
 
 function FifthForm() {
     const history = useHistory();
-    const { handleSubmit, register } = useForm();
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm();
 
     const onSubmit = data => {
         console.log(data);
@@ -52,6 +56,8 @@ function FifthForm() {
                 <input value='თვეში ერთხელ' type='radio' {...register('question1', { required: true })} />
                 თვეში ერთხელ
             </label>
+            {/* errors */}
+            <div className='inputError'>{errors.question1 && <span>გთხოვთ, აირჩიე ერთ-ერთი</span>}</div>
 
             <p>კვირაში რამდენი დღე ისურვებდი ოფისიდან მუშაობას?*</p>
 
@@ -78,6 +84,8 @@ function FifthForm() {
             <label>
                 <input value='5' type='radio' {...register('question2', { required: true })} />5
             </label>
+            {/* errors */}
+            <div className='inputError'>{errors.question2 && <span>გთხოვთ, აირჩიე ერთ-ერთი</span>}</div>
 
             <p>რას ფიქრობ ფიზიკურ შეკრებებზე?</p>
 
@@ -162,6 +170,15 @@ const Container = styled.form`
         width: 23px;
         height: 23px;
         margin: 0 22px;
+    }
+
+    .inputError {
+        font-family: Helvetica Neue LT GEO;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 19px;
+        color: #f15524;
     }
 
     textarea {

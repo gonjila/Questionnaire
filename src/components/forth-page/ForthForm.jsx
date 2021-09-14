@@ -6,7 +6,11 @@ import styled from 'styled-components';
 
 function ForthForm() {
     const history = useHistory();
-    const { register, handleSubmit } = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const [question1Yes, setQuestion1Yes] = useState(false);
     const [question1No, setQuestion1No] = useState(false);
@@ -78,7 +82,7 @@ function ForthForm() {
                     value='კი'
                     checked={question1Yes}
                     onClick={onQuestion1Yes}
-                    {...register('question1', { required: true })}
+                    {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
                 კი
             </label>
@@ -89,10 +93,11 @@ function ForthForm() {
                     value='არა'
                     checked={question1No}
                     onClick={onQuestion1No}
-                    {...register('question1', { required: true })}
+                    {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
                 არა
             </label>
+            <div className='inputError'>{errors.question1 && <span>{errors.question1.message}</span>}</div>
 
             {question1Yes && (
                 <>
@@ -104,7 +109,7 @@ function ForthForm() {
                             value='პირველი დოზა და დარეგისტრირებული ვარ მეორეზე'
                             checked={question2Registered}
                             onClick={onQuestion2Registered}
-                            {...register('question2', { required: true })}
+                            {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         პირველი დოზა და დარეგისტრირებული ვარ მეორეზე
                     </label>
@@ -115,7 +120,7 @@ function ForthForm() {
                             value='სრულად აცრილი ვარ'
                             checked={question2Completed}
                             onClick={onQuestion2Completed}
-                            {...register('question2', { required: true })}
+                            {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         სრულად აცრილი ვარ
                     </label>
@@ -126,10 +131,12 @@ function ForthForm() {
                             value='პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე'
                             checked={question2Unregistered}
                             onClick={onQuestion2Unregistered}
-                            {...register('question2', { required: true })}
+                            {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე
                     </label>
+                    <div className='inputError'>{errors.question2 && <span>{errors.question2.message}</span>}</div>
+
                     {question2Unregistered && (
                         <>
                             <p className='registrationLink'>
@@ -141,6 +148,7 @@ function ForthForm() {
                     )}
                 </>
             )}
+
             {question1No && (
                 <>
                     <p>რას ელოდები?*</p>
@@ -151,7 +159,7 @@ function ForthForm() {
                             value='დარეგისტრირებული ვარ და ველოდები რიცხვს'
                             checked={question3Weitting}
                             onClick={onQuestion3Weitting}
-                            {...register('question3', { required: true })}
+                            {...register('question3', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         დარეგისტრირებული ვარ და ველოდები რიცხვს
                     </label>
@@ -162,7 +170,7 @@ function ForthForm() {
                             value='არ ვგეგმავ'
                             checked={question3Not}
                             onClick={onQuestion3Not}
-                            {...register('question3', { required: true })}
+                            {...register('question3', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         არ ვგეგმავ
                     </label>
@@ -173,10 +181,11 @@ function ForthForm() {
                             value='გადატანილი მაქვს და ვგეგმავ აცრას'
                             checked={question3Going}
                             onClick={onQuestion3Going}
-                            {...register('question3', { required: true })}
+                            {...register('question3', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         გადატანილი მაქვს და ვგეგმავ აცრას
                     </label>
+                    <div className='inputError'>{errors.question3 && <span>{errors.question3.message}</span>}</div>
 
                     {question3Not && (
                         <>
@@ -255,6 +264,15 @@ const Container = styled.form`
         width: 23px;
         height: 23px;
         margin: 0 22px;
+    }
+
+    .inputError {
+        font-family: Helvetica Neue LT GEO;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 19px;
+        color: #f15524;
     }
 
     .registrationLink {

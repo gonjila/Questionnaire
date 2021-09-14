@@ -6,7 +6,11 @@ import styled from 'styled-components';
 
 function ThirdForm() {
     const history = useHistory();
-    const { register, handleSubmit } = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const [question1Yes, setQuestion1Yes] = useState(false);
     const [question1No, setQuestion1No] = useState(false);
@@ -61,7 +65,7 @@ function ThirdForm() {
                     value='კი'
                     checked={question1Yes}
                     onClick={onQuestion1Yes}
-                    {...register('question1', { required: true })}
+                    {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
                 <div className='label__circle'>
                     <div className={question1Yes ? 'label__radio label__radio--selected' : 'label__radio'}></div>
@@ -77,7 +81,7 @@ function ThirdForm() {
                     value='არა'
                     checked={question1No}
                     onClick={onQuestion1No}
-                    {...register('question1', { required: true })}
+                    {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
                 <div className='label__circle'>
                     <div className={question1No ? 'label__radio label__radio--selected' : 'label__radio'}></div>
@@ -93,13 +97,14 @@ function ThirdForm() {
                     value='ახლა მაქვს'
                     checked={question1Now}
                     onClick={onQuestion1Now}
-                    {...register('question1', { required: true })}
+                    {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
                 <div className='label__circle'>
                     <div className={question1Now ? 'label__radio label__radio--selected' : 'label__radio'}></div>
                 </div>
                 ახლა მაქვს
             </label>
+            <div className='inputError'>{errors.question1 && <span>{errors.question1.message}</span>}</div>
 
             {question1Yes && (
                 <>
@@ -112,7 +117,7 @@ function ThirdForm() {
                             value='კი'
                             checked={question2Yes}
                             onClick={onQuestion2Yes}
-                            {...register('question2', { required: true })}
+                            {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         <div className='label__circle'>
                             <div
@@ -121,6 +126,7 @@ function ThirdForm() {
                         </div>
                         კი
                     </label>
+
                     <label className='label'>
                         <input
                             id='p2r5'
@@ -129,7 +135,7 @@ function ThirdForm() {
                             value='არა'
                             checked={question2No}
                             onClick={onQuestion2No}
-                            {...register('question2', { required: true })}
+                            {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         <div className='label__circle'>
                             <div
@@ -138,10 +144,12 @@ function ThirdForm() {
                         </div>
                         არა
                     </label>
+                    <div className='inputError'>{errors.question2 && <span>{errors.question2.message}</span>}</div>
+
                     {question2Yes && (
                         <>
                             <p className='lastPs'>
-                                თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი
+                                თუ გახსოვს, გთხოვთ, მიუთითე ტესტის მიახლოებითი
                                 <br /> რიცხვი და ანტისხეულების რაოდენობა*
                             </p>
                             <input
@@ -158,6 +166,12 @@ function ThirdForm() {
                                 placeholder='ანტისხეულების რაოდენობა'
                                 {...register('antibodiesQuantity', { required: true })}
                             />
+                            <div className='inputError'>
+                                {errors.testNumber && <span>გთხოვთ, ჩაწერე ტესტის მიახლოებითი რიცხვი</span>}
+                            </div>
+                            <div className='inputError'>
+                                {errors.antibodiesQuantity && <span>გთხოვთ, ჩაწერო ანტისხეულების რაოდენობა</span>}
+                            </div>
                         </>
                     )}
 
@@ -172,8 +186,9 @@ function ThirdForm() {
                                 id='page3input1'
                                 type='date'
                                 className='page3Inputs'
-                                {...register('date', { required: true })}
+                                {...register('date', { required: 'გთხოვთ, ჩაწერო როდის გქონდა Covid-19' })}
                             />
+                            <div className='inputError'>{errors.date && <span>{errors.date.message}</span>}</div>
                         </>
                     )}
                 </>
@@ -285,6 +300,15 @@ const Container = styled.form`
     }
     #page3input1 {
         margin-bottom: 25px;
+    }
+
+    .inputError {
+        font-family: Helvetica Neue LT GEO;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 19px;
+        color: #f15524;
     }
 
     button {
