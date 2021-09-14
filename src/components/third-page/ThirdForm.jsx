@@ -293,6 +293,7 @@ const Container = styled.form`
         border: 0;
         background-color: transparent;
         position: absolute;
+        cursor: pointer;
         z-index: 5;
 
         &.prevPage {

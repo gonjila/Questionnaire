@@ -127,5 +127,6 @@ const Container = styled.form`
         left: calc(50% - 14px / 2 + 79px);
         bottom: 104.37px;
         background-color: transparent;
+        cursor: pointer;
     }
 `;

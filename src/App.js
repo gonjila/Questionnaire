@@ -3,10 +3,12 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
 import StartPage from './components/StartPage';
+// import FifthPage from './components/fifth-page/FifthPage';
 
 const SecondPage = lazy(() => import('./components/second-page/SecondPage'));
 const ThirdPage = lazy(() => import('./components/third-page/ThirdPage'));
 const ForthPage = lazy(() => import('./components/forth-page/ForthPage'));
+const FifthPage = lazy(() => import('./components/fifth-page/FifthPage'));
 
 function App() {
     return (
@@ -28,6 +30,10 @@ function App() {
 
                         <Route exact path='/forth-page'>
                             <ForthPage />
+                        </Route>
+
+                        <Route exact path='/fifth-page'>
+                            <FifthPage />
                         </Route>
 
                         <Route>

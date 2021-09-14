@@ -19,7 +19,9 @@ function ForthForm() {
     const [question3Not, setQuestion3Not] = useState(false);
     const [question3Going, setQuestion3Going] = useState(false);
 
-    const onSubmit = () => {};
+    const onSubmit = () => {
+        history.push('/fifth-page');
+    };
 
     const onQuestion1Yes = () => {
         setQuestion1Yes(true);
@@ -275,6 +277,7 @@ const Container = styled.form`
         border: 0;
         background-color: transparent;
         position: absolute;
+        cursor: pointer;
         z-index: 5;
 
         &.prevPage {

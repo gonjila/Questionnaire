@@ -37,6 +37,7 @@ const Container = styled.div`
         font-weight: 700;
         text-align: center;
         text-decoration: none;
+        cursor: pointer;
 
         &:hover {
             filter: drop-shadow(0.156vw 0.156vw 0px rgba(0, 0, 0, 0.5));
