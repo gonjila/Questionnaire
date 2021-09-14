@@ -58,7 +58,7 @@ function ThirdForm() {
                     id='p2r1'
                     type='radio'
                     className='label__input'
-                    value={'კი'}
+                    value='კი'
                     checked={question1Yes}
                     onClick={onQuestion1Yes}
                     {...register('question1', { required: true })}
@@ -74,7 +74,7 @@ function ThirdForm() {
                     id='p2r2'
                     type='radio'
                     className='label__input'
-                    value={'არა'}
+                    value='არა'
                     checked={question1No}
                     onClick={onQuestion1No}
                     {...register('question1', { required: true })}
@@ -90,7 +90,7 @@ function ThirdForm() {
                     id='p2r3'
                     type='radio'
                     className='label__input'
-                    value={'ახლა მაქვს'}
+                    value='ახლა მაქვს'
                     checked={question1Now}
                     onClick={onQuestion1Now}
                     {...register('question1', { required: true })}
@@ -109,7 +109,7 @@ function ThirdForm() {
                             id='p2r4'
                             type='radio'
                             className='label__input'
-                            value={'კი'}
+                            value='კი'
                             checked={question2Yes}
                             onClick={onQuestion2Yes}
                             {...register('question2', { required: true })}
@@ -126,7 +126,7 @@ function ThirdForm() {
                             id='p2r5'
                             type='radio'
                             className='label__input'
-                            value={'არა'}
+                            value='არა'
                             checked={question2No}
                             onClick={onQuestion2No}
                             {...register('question2', { required: true })}
@@ -178,6 +178,7 @@ function ThirdForm() {
                     )}
                 </>
             )}
+
             <button type='button' className='prevPage' onClick={onPrevBtnClick}>
                 <AiOutlineLeft style={{ width: '100%', height: '100%' }} />
             </button>
@@ -209,7 +210,7 @@ const Container = styled.form`
         margin: 46px 0 8px;
 
         &:nth-of-type(1) {
-            margin: 42px 0 8px;
+            margin-top: 0;
         }
     }
     .lastPs {
@@ -234,7 +235,7 @@ const Container = styled.form`
     }
 
     input {
-        margin-left: 21px;
+        margin-left: 23px;
     }
 
     .label__input {

@@ -29,7 +29,6 @@ const Container = styled.div`
         position: absolute;
         left: 795px;
         top: 121px;
-        border-radius: 0px;
 
         img {
             width: 100%;

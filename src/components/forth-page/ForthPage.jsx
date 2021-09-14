@@ -7,6 +7,9 @@ function ForthPage() {
         <Container>
             <Head pageNumber={3} />
             <ForthForm />
+            <div id='page4WallPaper'>
+                <img src='images/doctor.svg' alt='doctor with Needle' />
+            </div>
         </Container>
     );
 }
@@ -17,4 +20,12 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     padding: 0 200px;
+
+    #page4WallPaper {
+        height: 759px;
+        width: 783px;
+        position: absolute;
+        left: 940px;
+        top: 198px;
+    }
 `;
