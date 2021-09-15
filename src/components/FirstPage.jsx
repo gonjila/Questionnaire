@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-function StartPage() {
+function FirstPage() {
     return (
         <Container>
             <img src='images/logo.svg' alt='ვარსკვლავისკენ მფრინავი კოსმონავტი' />
@@ -13,7 +13,7 @@ function StartPage() {
     );
 }
 
-export default StartPage;
+export default FirstPage;
 
 const Container = styled.div`
     width: 100%;

@@ -14,7 +14,7 @@ function FifthForm() {
 
     const onSubmit = data => {
         console.log(data);
-        history.push('/sixth-page');
+        history.push('/last-page');
     };
 
     const onPrevBtnClick = () => {
@@ -169,7 +169,6 @@ const Container = styled.form`
         text-align: left;
         width: 50%;
         margin-bottom: 18px;
-        cursor: pointer;
 
         display: inline-flex;
         align-items: center;
@@ -181,6 +180,7 @@ const Container = styled.form`
         width: 23px;
         height: 23px;
         margin: 0 22px;
+        cursor: pointer;
     }
 
     .inputError {

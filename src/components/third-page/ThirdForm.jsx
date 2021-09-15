@@ -67,9 +67,6 @@ function ThirdForm() {
                     onClick={onQuestion1Yes}
                     {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
-                {/* <div className='label__circle'>
-                    <div className={question1Yes ? 'label__radio label__radio--selected' : 'label__radio'}></div>
-                </div> */}
                 კი
             </label>
 
@@ -83,9 +80,6 @@ function ThirdForm() {
                     onClick={onQuestion1No}
                     {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
-                {/* <div className='label__circle'>
-                    <div className={question1No ? 'label__radio label__radio--selected' : 'label__radio'}></div>
-                </div> */}
                 არა
             </label>
 
@@ -99,9 +93,6 @@ function ThirdForm() {
                     onClick={onQuestion1Now}
                     {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
-                {/* <div className='label__circle'>
-                    <div className={question1Now ? 'label__radio label__radio--selected' : 'label__radio'}></div>
-                </div> */}
                 ახლა მაქვს
             </label>
             {/* validation */}
@@ -120,11 +111,6 @@ function ThirdForm() {
                             onClick={onQuestion2Yes}
                             {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
-                        {/* <div className='label__circle'>
-                            <div
-                                className={question2Yes ? 'label__radio label__radio--selected' : 'label__radio'}
-                            ></div>
-                        </div> */}
                         კი
                     </label>
 
@@ -138,11 +124,6 @@ function ThirdForm() {
                             onClick={onQuestion2No}
                             {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
-                        {/* <div className='label__circle'>
-                            <div
-                                className={question2No ? 'label__radio label__radio--selected' : 'label__radio'}
-                            ></div>
-                        </div> */}
                         არა
                     </label>
                     {/* validation */}
@@ -247,7 +228,6 @@ const Container = styled.form`
         text-align: left;
         width: 50%;
         margin-bottom: 18px;
-        cursor: pointer;
 
         display: inline-flex;
         align-items: center;
@@ -263,6 +243,7 @@ const Container = styled.form`
         width: 23px;
         height: 23px;
         margin: 0 22px;
+        cursor: pointer;
     }
 
     .page3Inputs {

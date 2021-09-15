@@ -23,6 +23,8 @@ function ForthForm() {
     const [question3Not, setQuestion3Not] = useState(false);
     const [question3Going, setQuestion3Going] = useState(false);
 
+    const [valid, setValid] = useState(false);
+
     const onSubmit = () => {
         history.push('/fifth-page');
     };
@@ -40,32 +42,44 @@ function ForthForm() {
         setQuestion2Registered(true);
         setQuestion2Completed(false);
         setQuestion2Unregistered(false);
+
+        setValid(true);
     };
     const onQuestion2Completed = () => {
         setQuestion2Registered(false);
         setQuestion2Completed(true);
         setQuestion2Unregistered(false);
+
+        setValid(true);
     };
     const onQuestion2Unregistered = () => {
         setQuestion2Registered(false);
         setQuestion2Completed(false);
         setQuestion2Unregistered(true);
+
+        setValid(true);
     };
 
     const onQuestion3Weitting = () => {
         setQuestion3Weitting(true);
         setQuestion3Not(false);
         setQuestion3Going(false);
+
+        setValid(true);
     };
     const onQuestion3Not = () => {
         setQuestion3Weitting(false);
         setQuestion3Not(true);
         setQuestion3Going(false);
+
+        setValid(true);
     };
     const onQuestion3Going = () => {
         setQuestion3Weitting(false);
         setQuestion3Not(false);
         setQuestion3Going(true);
+
+        setValid(true);
     };
 
     const onPrevBtnClick = () => {
@@ -214,7 +228,7 @@ function ForthForm() {
             <button type='button' className='prevPage' onClick={onPrevBtnClick}>
                 <AiOutlineLeft style={{ width: '100%', height: '100%' }} />
             </button>
-            <button type='submit' className='nextPage'>
+            <button type='submit' className='nextPage' style={valid ? { opacity: '1' } : { opacity: '0.5' }}>
                 <AiOutlineRight style={{ width: '100%', height: '100%' }} />
             </button>
         </Container>
@@ -255,7 +269,6 @@ const Container = styled.form`
         text-align: left;
         width: 50%;
         margin-bottom: 18px;
-        cursor: pointer;
 
         display: inline-flex;
         align-items: center;
@@ -267,6 +280,7 @@ const Container = styled.form`
         width: 23px;
         height: 23px;
         margin: 0 22px;
+        cursor: pointer;
     }
 
     .inputError {

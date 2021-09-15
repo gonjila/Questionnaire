@@ -10,6 +10,9 @@ function ForthPage() {
             <div id='page4WallPaper'>
                 <img src='images/doctor.svg' alt='doctor with Needle' />
             </div>
+            <div id='page4WallPaperDecoration'>
+                <img src='images/goldenStar.svg' alt='doctor with Needle' />
+            </div>
         </Container>
     );
 }
@@ -27,5 +30,17 @@ const Container = styled.div`
         position: absolute;
         left: 940px;
         top: 198px;
+        z-index: 1;
+    }
+
+    #page4WallPaperDecoration {
+        height: 312px;
+        width: 288px;
+        position: absolute;
+        left: 971px;
+        top: 180.5px;
+        right: 661px;
+        top: 180.5px;
+        z-index: 0;
     }
 `;

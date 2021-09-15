@@ -17,6 +17,7 @@ function SecondPage() {
             <div id='page2WallPaper'>
                 <img src='images/scaning.svg' alt='' />
             </div>
+            <div id='page2WallPaperDecoration' />
         </Container>
     );
 }
@@ -52,10 +53,25 @@ const Container = styled.div`
         height: 831px;
         right: 165px;
         top: 94px;
+        z-index: 1;
 
         img {
             width: 100%;
             height: 100%;
         }
+    }
+
+    #page2WallPaperDecoration {
+        width: 622px;
+        height: 75px;
+        left: 978px;
+        top: 324px;
+        background: #d6d16e;
+        position: absolute;
+        right: 320px;
+        top: 304px;
+        bottom: 681px;
+        left: 978px;
+        z-index: 0;
     }
 `;
