@@ -1,10 +1,14 @@
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineLeft } from 'react-icons/ai';
-
 import styled from 'styled-components';
 
+import { addFifthpageInfo } from '../../redux/actions/information-actions';
+
 function FifthForm() {
+    const dispatch = useDispatch();
+
     const history = useHistory();
     const {
         handleSubmit,
@@ -14,6 +18,7 @@ function FifthForm() {
 
     const onSubmit = data => {
         console.log(data);
+        dispatch(addFifthpageInfo(data));
         history.push('/last-page');
     };
 
