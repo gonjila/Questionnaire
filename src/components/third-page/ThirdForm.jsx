@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
 import styled from 'styled-components';
+
+import { addThirdpageInfo } from '../../redux/actions/information-actions';
 
 function ThirdForm() {
     const history = useHistory();
@@ -11,6 +14,7 @@ function ThirdForm() {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const dispatch = useDispatch();
 
     const [question1Yes, setQuestion1Yes] = useState(false);
     const [question1No, setQuestion1No] = useState(false);
@@ -20,7 +24,7 @@ function ThirdForm() {
 
     const onSubmit = data => {
         console.log(data);
-
+        dispatch(addThirdpageInfo(data));
         history.push('/forth-page');
     };
 

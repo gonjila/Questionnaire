@@ -1,7 +1,10 @@
-import { useForm } from 'react-hook-form';
-import { AiOutlineRight } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { AiOutlineRight } from 'react-icons/ai';
 import styled from 'styled-components';
+
+import { addSecondpageInfo } from '../../redux/actions/information-actions';
 
 function SecondInputs() {
     const history = useHistory();
@@ -10,10 +13,11 @@ function SecondInputs() {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const dispatch = useDispatch();
 
     const onSubmit = data => {
         console.log(data);
-
+        dispatch(addSecondpageInfo(data));
         history.push('/third-page');
     };
 

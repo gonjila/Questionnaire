@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
 import styled from 'styled-components';
+
+import { addForthpageInfo } from '../../redux/actions/information-actions';
 
 function ForthForm() {
     const history = useHistory();
@@ -11,6 +14,7 @@ function ForthForm() {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const dispatch = useDispatch();
 
     const [question1Yes, setQuestion1Yes] = useState(false);
     const [question1No, setQuestion1No] = useState(false);
@@ -25,7 +29,8 @@ function ForthForm() {
 
     const [valid, setValid] = useState(false);
 
-    const onSubmit = () => {
+    const onSubmit = data => {
+        dispatch(addForthpageInfo(data));
         history.push('/fifth-page');
     };
 
