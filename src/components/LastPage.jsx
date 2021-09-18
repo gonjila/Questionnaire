@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-function EndPage() {
+function LastPage() {
     return (
         <Container>
             <p>მადლობა</p>
@@ -14,7 +14,7 @@ function EndPage() {
     );
 }
 
-export default EndPage;
+export default LastPage;
 
 const Container = styled.div`
     height: 100%;

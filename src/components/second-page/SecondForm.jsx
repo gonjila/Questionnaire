@@ -1,7 +1,12 @@
-import { useForm } from 'react-hook-form';
-import { AiOutlineRight } from 'react-icons/ai';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { AiOutlineRight } from 'react-icons/ai';
 import styled from 'styled-components';
+
+import { addSecondpageInfo } from '../../redux/actions/information-actions';
+// import { Name, LastName, Email } from '../../redux/selectors/information-selectors';
 
 function SecondInputs() {
     const history = useHistory();
@@ -10,11 +15,42 @@ function SecondInputs() {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const dispatch = useDispatch();
+    // const ReduxName = useSelector(Name);
+    // const ReduxLastName = useSelector(LastName);
+    // const ReduxEmail = useSelector(Email);
+
+    const [nameState, setNameState] = useState(null);
+    const [lastNameState, setLastNameState] = useState(null);
+    const [EmailState, setEmailState] = useState(null);
 
     const onSubmit = data => {
-        console.log(data);
-
+        // console.log(data);
+        dispatch(addSecondpageInfo(data));
         history.push('/third-page');
+    };
+
+    const regex = new RegExp('^[ა-ჰ a-z A-z]+.{2,}$');
+    const emailRegex = new RegExp('@redberry.ge$');
+    const typing = event => {
+        if (event.target.name === 'name' && regex.test(event.target.value)) {
+            setNameState(true);
+        } else if (event.target.name === 'lastName' && regex.test(event.target.value)) {
+            setLastNameState(true);
+        } else if (event.target.name === 'email' && emailRegex.test(event.target.value)) {
+            setEmailState(true);
+        } else {
+            setNameState(false);
+            setLastNameState(false);
+            setEmailState(false);
+        }
+    };
+
+    const valid = () => {
+        if (nameState && lastNameState && EmailState) {
+            return true;
+        }
+        return false;
     };
 
     return (
@@ -23,13 +59,14 @@ function SecondInputs() {
             <input
                 type='text'
                 className='name'
-                placeholder='ლაშა'
+                placeholder='იოსებ'
+                onKeyDown={typing}
                 {...register('name', {
-                    required: { value: true, message: 'This field is required' },
+                    required: { value: true, message: 'გთხოვთ, შეავსე ველი' },
                     minLength: { value: 3, message: 'სახელის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან' },
                     maxLength: { value: 255, message: 'სახელის ველი უნდა შედგებოდეს მაქსიმუმ 255 სიმბოლოსგან' },
                     pattern: {
-                        value: /[ა-ჰa-zA-Z]+|[^0-9]+/,
+                        value: /^[ა-ჰ a-z A-z]+$/,
                         message: 'სახელის ველი უნდა შეიცავდეს მხოლოდ ანბანის ასოებს',
                     },
                 })}
@@ -40,14 +77,14 @@ function SecondInputs() {
             <input
                 type='text'
                 className='lastName'
-                placeholder='გონჯილაშვილი'
+                placeholder='ჯუღაშვილი'
+                onKeyDown={typing}
                 {...register('lastName', {
-                    required: { value: true, message: 'This field is required' },
+                    required: { value: true, message: 'გთხოვთ, შეავსე ველი' },
                     minLength: { value: 3, message: 'გვარის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან' },
                     maxLength: { value: 255, message: 'გვარის ველი უნდა შედგებოდეს მაქსიმუმ 255 სიმბოლოსგან' },
                     pattern: {
-                        //! თუ რიცხთან ასოცაა მაშინ არაფერს შვრება მაგრამ თუ არაა აგდებს errors
-                        value: /[^0-9]+/,
+                        value: /^[ა-ჰ a-z A-z]+$/,
                         message: 'გვარის ველი უნდა შეიცავდეს მხოლოდ ანბანის ასოებს',
                     },
                 })}
@@ -58,9 +95,10 @@ function SecondInputs() {
             <input
                 type='text'
                 className='email'
-                placeholder='lgonjila@redberry.ge'
+                placeholder='fbi@redberry.ge'
+                onKeyUp={typing}
                 {...register('email', {
-                    required: { value: true, message: 'This field is required' },
+                    required: { value: true, message: 'გთხოვთ, შეავსე ველი' },
                     pattern: {
                         value: /@redberry.ge$/,
                         message: 'გთხოვთ დარეგისტრირდეთ Redberry-ს მეილით (youremail@redberry.ge)',
@@ -69,7 +107,7 @@ function SecondInputs() {
             />
             <div className='inputError'>{errors.email && <span>{errors.email.message}</span>}</div>
 
-            <button className='nextPage'>
+            <button className='nextPage' style={valid() ? { opacity: 1 } : { opacity: 0.5 }}>
                 <AiOutlineRight style={{ width: '100%', height: '100%' }} />
             </button>
         </Container>

@@ -2,14 +2,13 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import StartPage from './components/StartPage';
-// import EndPage from './components/EndPage';
+import StartPage from './components/FirstPage';
 
 const SecondPage = lazy(() => import('./components/second-page/SecondPage'));
 const ThirdPage = lazy(() => import('./components/third-page/ThirdPage'));
 const ForthPage = lazy(() => import('./components/forth-page/ForthPage'));
 const FifthPage = lazy(() => import('./components/fifth-page/FifthPage'));
-const EndPage = lazy(() => import('./components/EndPage'));
+const EndPage = lazy(() => import('./components/LastPage'));
 
 function App() {
     return (
@@ -37,7 +36,7 @@ function App() {
                             <FifthPage />
                         </Route>
 
-                        <Route exact path='/end-page'>
+                        <Route exact path='/last-page'>
                             <EndPage />
                         </Route>
 

@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
 import styled from 'styled-components';
+
+import { addThirdpageInfo } from '../../redux/actions/information-actions';
 
 function ThirdForm() {
     const history = useHistory();
@@ -11,6 +14,9 @@ function ThirdForm() {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const dispatch = useDispatch();
+
+    console.log(errors);
 
     const [question1Yes, setQuestion1Yes] = useState(false);
     const [question1No, setQuestion1No] = useState(false);
@@ -18,35 +24,60 @@ function ThirdForm() {
     const [question2Yes, setQuestion2Yes] = useState(false);
     const [question2No, setQuestion2No] = useState(false);
 
-    const onSubmit = data => {
-        console.log(data);
+    const [input1, setInput1] = useState(false);
+    const [input2, setInput2] = useState(false);
+    const [input3, setInput3] = useState(false);
 
+    const onSubmit = data => {
+        // console.log(data);
+        dispatch(addThirdpageInfo(data));
         history.push('/forth-page');
     };
 
-    const onQuestion1Yes = () => {
-        setQuestion1Yes(true);
-        setQuestion1No(false);
-        setQuestion1Now(false);
-    };
-    const onQuestion1No = () => {
-        setQuestion1Yes(false);
-        setQuestion1No(true);
-        setQuestion1Now(false);
-    };
-    const onQuestion1Now = () => {
-        setQuestion1Yes(false);
-        setQuestion1No(false);
-        setQuestion1Now(true);
+    const selecting = event => {
+        if (event.target.id === 'p2r1') {
+            setQuestion1Yes(true);
+            setQuestion1No(false);
+            setQuestion1Now(false);
+        } else if (event.target.id === 'p2r2') {
+            setQuestion1Yes(false);
+            setQuestion1No(true);
+            setQuestion1Now(false);
+        } else if (event.target.id === 'p2r3') {
+            setQuestion1Yes(false);
+            setQuestion1No(false);
+            setQuestion1Now(true);
+        } else if (event.target.id === 'p2r4') {
+            setQuestion2Yes(true);
+            setQuestion2No(false);
+        } else if (event.target.id === 'p2r5') {
+            setQuestion2Yes(false);
+            setQuestion2No(true);
+        }
     };
 
-    const onQuestion2Yes = () => {
-        setQuestion2Yes(true);
-        setQuestion2No(false);
+    const changed = event => {
+        if (event.target.id === 'p3i1') {
+            setInput1(true);
+        } else if (event.target.id === 'p3i2') {
+            setInput2(true);
+        } else if (event.target.id === 'p3i3') {
+            setInput3(true);
+        } else {
+            setInput1(false);
+            setInput2(false);
+            setInput3(false);
+        }
     };
-    const onQuestion2No = () => {
-        setQuestion2Yes(false);
-        setQuestion2No(true);
+
+    const valid = () => {
+        if (
+            (question1Yes || question1No || question1Now) &&
+            ((question2Yes && input1 && input2) || (question2No && input3))
+        ) {
+            return true;
+        }
+        return false;
     };
 
     const onPrevBtnClick = () => {
@@ -64,12 +95,9 @@ function ThirdForm() {
                     className='label__input'
                     value='კი'
                     checked={question1Yes}
-                    onClick={onQuestion1Yes}
-                    {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                    onClick={selecting}
+                    {...register('გაქვს_გადატანილი_Covid_19', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
-                {/* <div className='label__circle'>
-                    <div className={question1Yes ? 'label__radio label__radio--selected' : 'label__radio'}></div>
-                </div> */}
                 კი
             </label>
 
@@ -80,12 +108,9 @@ function ThirdForm() {
                     className='label__input'
                     value='არა'
                     checked={question1No}
-                    onClick={onQuestion1No}
-                    {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                    onClick={selecting}
+                    {...register('გაქვს_გადატანილი_Covid_19', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
-                {/* <div className='label__circle'>
-                    <div className={question1No ? 'label__radio label__radio--selected' : 'label__radio'}></div>
-                </div> */}
                 არა
             </label>
 
@@ -96,16 +121,15 @@ function ThirdForm() {
                     className='label__input'
                     value='ახლა მაქვს'
                     checked={question1Now}
-                    onClick={onQuestion1Now}
-                    {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                    onClick={selecting}
+                    {...register('გაქვს_გადატანილი_Covid_19', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
-                {/* <div className='label__circle'>
-                    <div className={question1Now ? 'label__radio label__radio--selected' : 'label__radio'}></div>
-                </div> */}
                 ახლა მაქვს
             </label>
-            {/* validation */}
-            <div className='inputError'>{errors.question1 && <span>{errors.question1.message}</span>}</div>
+            {/* validation error */}
+            <div className='inputError'>
+                {errors.გაქვს_გადატანილი_Covid_19 && <span>{errors.გაქვს_გადატანილი_Covid_19.message}</span>}
+            </div>
 
             {question1Yes && (
                 <>
@@ -117,14 +141,11 @@ function ThirdForm() {
                             className='label__input'
                             value='კი'
                             checked={question2Yes}
-                            onClick={onQuestion2Yes}
-                            {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                            onClick={selecting}
+                            {...register('ანტისხეულების_ტესტი_გაქვს_გაკეთებული', {
+                                required: 'გთხოვთ, აირჩიე ერთ-ერთი',
+                            })}
                         />
-                        {/* <div className='label__circle'>
-                            <div
-                                className={question2Yes ? 'label__radio label__radio--selected' : 'label__radio'}
-                            ></div>
-                        </div> */}
                         კი
                     </label>
 
@@ -135,18 +156,19 @@ function ThirdForm() {
                             className='label__input'
                             value='არა'
                             checked={question2No}
-                            onClick={onQuestion2No}
-                            {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                            onClick={selecting}
+                            {...register('ანტისხეულების_ტესტი_გაქვს_გაკეთებული', {
+                                required: 'გთხოვთ, აირჩიე ერთ-ერთი',
+                            })}
                         />
-                        {/* <div className='label__circle'>
-                            <div
-                                className={question2No ? 'label__radio label__radio--selected' : 'label__radio'}
-                            ></div>
-                        </div> */}
                         არა
                     </label>
-                    {/* validation */}
-                    <div className='inputError'>{errors.question2 && <span>{errors.question2.message}</span>}</div>
+                    {/* validation error */}
+                    <div className='inputError'>
+                        {errors.ანტისხეულების_ტესტი_გაქვს_გაკეთებული && (
+                            <span>{errors.ანტისხეულების_ტესტი_გაქვს_გაკეთებული.message}</span>
+                        )}
+                    </div>
 
                     {question2Yes && (
                         <>
@@ -155,25 +177,31 @@ function ThirdForm() {
                                 <br /> რიცხვი და ანტისხეულების რაოდენობა*
                             </p>
                             <input
-                                id='page3input1'
+                                id='p3i1'
                                 type='number'
                                 className='page3Inputs'
                                 placeholder='რიცხვი'
-                                {...register('testNumber', { required: true })}
+                                onKeyUp={changed}
+                                {...register('ტესტის_მიახლოებითი_რიცხვი', { required: true })}
                             />
                             <input
-                                id='page3input1'
+                                id='p3i2'
                                 type='number'
                                 className='page3Inputs'
                                 placeholder='ანტისხეულების რაოდენობა'
-                                {...register('antibodiesQuantity', { required: true })}
+                                onKeyDown={changed}
+                                {...register('ანტისხეულების_რაოდენობა', { required: true })}
                             />
-                            {/* validations */}
+                            {/* validations error */}
                             <div className='inputError'>
-                                {errors.testNumber && <span>გთხოვთ, ჩაწერე ტესტის მიახლოებითი რიცხვი</span>}
+                                {errors.ტესტის_მიახლოებითი_რიცხვი && (
+                                    <span>გთხოვთ, ჩაწერე ტესტის მიახლოებითი რიცხვი</span>
+                                )}
                             </div>
                             <div className='inputError'>
-                                {errors.antibodiesQuantity && <span>გთხოვთ, ჩაწერო ანტისხეულების რაოდენობა</span>}
+                                {errors.ანტისხეულების_რაოდენობა && (
+                                    <span>გთხოვთ, ჩაწერო ანტისხეულების რაოდენობა</span>
+                                )}
                             </div>
                         </>
                     )}
@@ -186,13 +214,20 @@ function ThirdForm() {
                             </p>
 
                             <input
-                                id='page3input1'
+                                id='p3i3'
                                 type='date'
                                 className='page3Inputs'
-                                {...register('date', { required: 'გთხოვთ, ჩაწერო როდის გქონდა Covid-19' })}
+                                onKeyUp={changed}
+                                {...register('როდის_გქონდა_Covid_19', {
+                                    required: 'გთხოვთ, ჩაწერო როდის გქონდა Covid-19',
+                                })}
                             />
-                            {/* validation */}
-                            <div className='inputError'>{errors.date && <span>{errors.date.message}</span>}</div>
+                            {/* validation error */}
+                            <div className='inputError'>
+                                {errors.როდის_გქონდა_Covid_19 && (
+                                    <span>{errors.როდის_გქონდა_Covid_19.message}</span>
+                                )}
+                            </div>
                         </>
                     )}
                 </>
@@ -201,7 +236,7 @@ function ThirdForm() {
             <button type='button' className='prevPage' onClick={onPrevBtnClick}>
                 <AiOutlineLeft style={{ width: '100%', height: '100%' }} />
             </button>
-            <button type='submit' className='nextPage'>
+            <button type='submit' className='nextPage' style={valid() ? { opacity: 1 } : { opacity: 0.5 }}>
                 <AiOutlineRight style={{ width: '100%', height: '100%' }} />
             </button>
         </Container>
@@ -247,7 +282,6 @@ const Container = styled.form`
         text-align: left;
         width: 50%;
         margin-bottom: 18px;
-        cursor: pointer;
 
         display: inline-flex;
         align-items: center;
@@ -263,6 +297,7 @@ const Container = styled.form`
         width: 23px;
         height: 23px;
         margin: 0 22px;
+        cursor: pointer;
     }
 
     .page3Inputs {
@@ -278,7 +313,7 @@ const Container = styled.form`
         line-height: 22px;
         color: #232323;
     }
-    #page3input1 {
+    #p3i1 {
         margin-bottom: 25px;
     }
 

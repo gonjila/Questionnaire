@@ -11,6 +11,9 @@ function FifthPage() {
             <div id='page5WallPaper'>
                 <img src='images/biker.svg' alt='boy on bicycle' />
             </div>
+            <div id='page5WallPaperDecoration'>
+                <img src='images/heart.svg' alt='boy on bicycle' />
+            </div>
         </Container>
     );
 }
@@ -29,5 +32,15 @@ const Container = styled.div`
         position: absolute;
         right: 262px;
         top: 215px;
+        z-index: 1;
+    }
+
+    #page5WallPaperDecoration {
+        height: 172px;
+        width: 194.69903564453125px;
+        position: absolute;
+        left: 1055.580078125px;
+        top: 281.5px;
+        z-index: 0;
     }
 `;
