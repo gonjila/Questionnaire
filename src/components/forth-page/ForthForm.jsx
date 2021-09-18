@@ -27,64 +27,53 @@ function ForthForm() {
     const [question3Not, setQuestion3Not] = useState(false);
     const [question3Going, setQuestion3Going] = useState(false);
 
-    const [valid, setValid] = useState(false);
-
     const onSubmit = data => {
         dispatch(addForthpageInfo(data));
         history.push('/fifth-page');
     };
 
-    const onQuestion1Yes = () => {
-        setQuestion1Yes(true);
-        setQuestion1No(false);
+    const selection = event => {
+        if (event.target.id === 'p4q1r1') {
+            setQuestion1Yes(true);
+            setQuestion1No(false);
+        } else if (event.target.id === 'p4q1r2') {
+            setQuestion1Yes(false);
+            setQuestion1No(true);
+        } else if (event.target.id === 'p4q2r1') {
+            setQuestion2Registered(true);
+            setQuestion2Completed(false);
+            setQuestion2Unregistered(false);
+        } else if (event.target.id === 'p4q2r2') {
+            setQuestion2Registered(false);
+            setQuestion2Completed(true);
+            setQuestion2Unregistered(false);
+        } else if (event.target.id === 'p4q2r3') {
+            setQuestion2Registered(false);
+            setQuestion2Completed(false);
+            setQuestion2Unregistered(true);
+        } else if (event.target.id === 'p4q3r1') {
+            setQuestion3Weitting(true);
+            setQuestion3Not(false);
+            setQuestion3Going(false);
+        } else if (event.target.id === 'p4q3r2') {
+            setQuestion3Weitting(false);
+            setQuestion3Not(true);
+            setQuestion3Going(false);
+        } else if (event.target.id === 'p4q3r3') {
+            setQuestion3Weitting(false);
+            setQuestion3Not(false);
+            setQuestion3Going(true);
+        }
     };
-    const onQuestion1No = () => {
-        setQuestion1Yes(false);
-        setQuestion1No(true);
-    };
 
-    const onQuestion2Registered = () => {
-        setQuestion2Registered(true);
-        setQuestion2Completed(false);
-        setQuestion2Unregistered(false);
-
-        setValid(true);
-    };
-    const onQuestion2Completed = () => {
-        setQuestion2Registered(false);
-        setQuestion2Completed(true);
-        setQuestion2Unregistered(false);
-
-        setValid(true);
-    };
-    const onQuestion2Unregistered = () => {
-        setQuestion2Registered(false);
-        setQuestion2Completed(false);
-        setQuestion2Unregistered(true);
-
-        setValid(true);
-    };
-
-    const onQuestion3Weitting = () => {
-        setQuestion3Weitting(true);
-        setQuestion3Not(false);
-        setQuestion3Going(false);
-
-        setValid(true);
-    };
-    const onQuestion3Not = () => {
-        setQuestion3Weitting(false);
-        setQuestion3Not(true);
-        setQuestion3Going(false);
-
-        setValid(true);
-    };
-    const onQuestion3Going = () => {
-        setQuestion3Weitting(false);
-        setQuestion3Not(false);
-        setQuestion3Going(true);
-
-        setValid(true);
+    const valid = () => {
+        if (
+            (question1Yes && (question2Registered || question2Completed || question2Unregistered)) ||
+            (question1No && (question3Weitting || question3Not || question3Going))
+        ) {
+            return true;
+        }
+        return false;
     };
 
     const onPrevBtnClick = () => {
@@ -95,68 +84,77 @@ function ForthForm() {
         <Container onSubmit={handleSubmit(onSubmit)}>
             <p>უკვე აცრილი ხარ?*</p>
 
-            <label htmlFor='question1'>
+            <label>
                 <input
+                    id='p4q1r1'
                     type='radio'
                     value='კი'
                     checked={question1Yes}
-                    onClick={onQuestion1Yes}
-                    {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                    onClick={selection}
+                    {...register('უკვე_აცრილი_ხარ', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
                 კი
             </label>
 
-            <label htmlFor='question1'>
+            <label>
                 <input
+                    id='p4q1r2'
                     type='radio'
                     value='არა'
                     checked={question1No}
-                    onClick={onQuestion1No}
-                    {...register('question1', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                    onClick={selection}
+                    {...register('უკვე_აცრილი_ხარ', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                 />
                 არა
             </label>
             {/* validation */}
-            <div className='inputError'>{errors.question1 && <span>{errors.question1.message}</span>}</div>
+            <div className='inputError'>
+                {errors.უკვე_აცრილი_ხარ && <span>{errors.უკვე_აცრილი_ხარ.message}</span>}
+            </div>
 
             {question1Yes && (
                 <>
                     <p>აირჩიე რა ეტაპზე ხარ*</p>
 
-                    <label htmlFor='question2'>
+                    <label>
                         <input
+                            id='p4q2r1'
                             type='radio'
                             value='პირველი დოზა და დარეგისტრირებული ვარ მეორეზე'
                             checked={question2Registered}
-                            onClick={onQuestion2Registered}
-                            {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                            onClick={selection}
+                            {...register('აირჩიე_რა_ეტაპზე_ხარ', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         პირველი დოზა და დარეგისტრირებული ვარ მეორეზე
                     </label>
 
-                    <label htmlFor='question2'>
+                    <label>
                         <input
+                            id='p4q2r2'
                             type='radio'
                             value='სრულად აცრილი ვარ'
                             checked={question2Completed}
-                            onClick={onQuestion2Completed}
-                            {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                            onClick={selection}
+                            {...register('აირჩიე_რა_ეტაპზე_ხარ', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         სრულად აცრილი ვარ
                     </label>
 
-                    <label htmlFor='question2'>
+                    <label>
                         <input
+                            id='p4q2r3'
                             type='radio'
                             value='პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე'
                             checked={question2Unregistered}
-                            onClick={onQuestion2Unregistered}
-                            {...register('question2', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                            onClick={selection}
+                            {...register('აირჩიე_რა_ეტაპზე_ხარ', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე
                     </label>
                     {/* validation */}
-                    <div className='inputError'>{errors.question2 && <span>{errors.question2.message}</span>}</div>
+                    <div className='inputError'>
+                        {errors.აირჩიე_რა_ეტაპზე_ხარ && <span>{errors.აირჩიე_რა_ეტაპზე_ხარ.message}</span>}
+                    </div>
 
                     {question2Unregistered && (
                         <>
@@ -174,40 +172,45 @@ function ForthForm() {
                 <>
                     <p>რას ელოდები?*</p>
 
-                    <label htmlFor='question3'>
+                    <label>
                         <input
+                            id='p4q3r1'
                             type='radio'
                             value='დარეგისტრირებული ვარ და ველოდები რიცხვს'
                             checked={question3Weitting}
-                            onClick={onQuestion3Weitting}
-                            {...register('question3', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                            onClick={selection}
+                            {...register('რას_ელოდები', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         დარეგისტრირებული ვარ და ველოდები რიცხვს
                     </label>
 
-                    <label htmlFor='question3'>
+                    <label>
                         <input
+                            id='p4q3r2'
                             type='radio'
                             value='არ ვგეგმავ'
                             checked={question3Not}
-                            onClick={onQuestion3Not}
-                            {...register('question3', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                            onClick={selection}
+                            {...register('რას_ელოდები', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         არ ვგეგმავ
                     </label>
 
-                    <label htmlFor='question3'>
+                    <label>
                         <input
+                            id='p4q3r3'
                             type='radio'
                             value='გადატანილი მაქვს და ვგეგმავ აცრას'
                             checked={question3Going}
-                            onClick={onQuestion3Going}
-                            {...register('question3', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
+                            onClick={selection}
+                            {...register('რას_ელოდები', { required: 'გთხოვთ, აირჩიე ერთ-ერთი' })}
                         />
                         გადატანილი მაქვს და ვგეგმავ აცრას
                     </label>
                     {/* validation */}
-                    <div className='inputError'>{errors.question3 && <span>{errors.question3.message}</span>}</div>
+                    <div className='inputError'>
+                        {errors.რას_ელოდები && <span>{errors.რას_ელოდები.message}</span>}
+                    </div>
 
                     {question3Not && (
                         <>
@@ -233,7 +236,7 @@ function ForthForm() {
             <button type='button' className='prevPage' onClick={onPrevBtnClick}>
                 <AiOutlineLeft style={{ width: '100%', height: '100%' }} />
             </button>
-            <button type='submit' className='nextPage' style={valid ? { opacity: '1' } : { opacity: '0.5' }}>
+            <button type='submit' className='nextPage' style={valid() ? { opacity: '1' } : { opacity: '0.5' }}>
                 <AiOutlineRight style={{ width: '100%', height: '100%' }} />
             </button>
         </Container>
