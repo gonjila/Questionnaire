@@ -6,7 +6,6 @@ import { AiOutlineRight } from 'react-icons/ai';
 import styled from 'styled-components';
 
 import { addSecondpageInfo } from '../../redux/actions/information-actions';
-// import { Name, LastName, Email } from '../../redux/selectors/information-selectors';
 
 function SecondInputs() {
     const history = useHistory();
@@ -16,9 +15,6 @@ function SecondInputs() {
         formState: { errors },
     } = useForm();
     const dispatch = useDispatch();
-    // const ReduxName = useSelector(Name);
-    // const ReduxLastName = useSelector(LastName);
-    // const ReduxEmail = useSelector(Email);
 
     const [nameState, setNameState] = useState(null);
     const [lastNameState, setLastNameState] = useState(null);

@@ -17,7 +17,7 @@ function FifthForm() {
     } = useForm();
 
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
         dispatch(addFifthpageInfo(data));
         history.push('/last-page');
     };

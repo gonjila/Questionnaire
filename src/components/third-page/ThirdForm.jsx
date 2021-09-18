@@ -16,8 +16,6 @@ function ThirdForm() {
     } = useForm();
     const dispatch = useDispatch();
 
-    console.log(errors);
-
     const [question1Yes, setQuestion1Yes] = useState(false);
     const [question1No, setQuestion1No] = useState(false);
     const [question1Now, setQuestion1Now] = useState(false);
@@ -72,8 +70,10 @@ function ThirdForm() {
 
     const valid = () => {
         if (
-            (question1Yes || question1No || question1Now) &&
-            ((question2Yes && input1 && input2) || (question2No && input3))
+            (question1Yes && question2Yes && input1 && input2) ||
+            (question2No && input3) ||
+            question1No ||
+            question1Now
         ) {
             return true;
         }

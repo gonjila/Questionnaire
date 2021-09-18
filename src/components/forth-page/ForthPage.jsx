@@ -10,7 +10,7 @@ function ForthPage() {
             y: '180px',
             width: '229px',
             height: '229px',
-            'border-radius': '50%',
+            borderRadius: '50%',
             // background: '#dd3939',
         },
         to: {
@@ -18,7 +18,7 @@ function ForthPage() {
             y: '0px',
             width: '288px',
             height: '312px',
-            'border-radius': '0%',
+            borderRadius: '0%',
             // background: 'transparent',
         },
         config: { duration: 300 },

@@ -11,10 +11,10 @@ function ThirdPage() {
             y: '-70px',
             width: '622px',
             height: '75px',
-            'border-radius': '0%',
+            borderRadius: '0%',
             background: '#d6d16e',
         },
-        to: { x: '0px', y: '0px', width: '229px', height: '229px', 'border-radius': '50%', background: '#dd3939' },
+        to: { x: '0px', y: '0px', width: '229px', height: '229px', borderRadius: '50%', background: '#dd3939' },
         config: { duration: 300 },
     });
 
