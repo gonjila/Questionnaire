@@ -1,14 +1,37 @@
+import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 
 function LastPage() {
+    const textAnimation = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        config: { duration: 700 },
+    });
+    const bigStarAnimation = useSpring({
+        delay: 700,
+        from: { x: '50px', y: '100px', opacity: 0 },
+        to: { x: '0px', y: '0px', opacity: 1 },
+        config: { duration: 300 },
+    });
+    const smallStarrAnimation = useSpring({
+        delay: 700,
+        from: { x: '-130px', y: '-60px', opacity: 0 },
+        to: { x: '0px', y: '0px', opacity: 1 },
+        config: { duration: 300 },
+    });
+
     return (
         <Container>
-            <p>მადლობა</p>
+            <animated.p style={{ ...textAnimation }}>მადლობა</animated.p>
             <div id='bigStar'>
-                <img src='images/bigStar.svg' alt='white big star' />
+                <animated.img src='images/bigStar.svg' alt='white big star' style={{ ...bigStarAnimation }} />
             </div>
             <div id='smallStar'>
-                <img src='images/smallStar.svg' alt='white small star' />
+                <animated.img
+                    src='images/smallStar.svg'
+                    alt='white small star'
+                    style={{ ...smallStarrAnimation }}
+                />
             </div>
         </Container>
     );

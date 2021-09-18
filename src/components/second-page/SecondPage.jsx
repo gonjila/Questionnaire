@@ -1,9 +1,16 @@
+import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 
 import Head from '../Head';
 import SecondInputs from './SecondForm';
 
 function SecondPage() {
+    const decorationAnimation = useSpring({
+        from: { x: '-120px', y: '110px', width: '100px', height: '100px', background: '#FE3B1F' },
+        to: { x: '0px', y: '0px', width: '622px', height: '75px', background: '#d6d16e' },
+        config: { duration: 300 },
+    });
+
     return (
         <Container>
             <Head pageNumber={1} />
@@ -17,7 +24,7 @@ function SecondPage() {
             <div id='page2WallPaper'>
                 <img src='images/scaning.svg' alt='' />
             </div>
-            <div id='page2WallPaperDecoration' />
+            <animated.div id='page2WallPaperDecoration' style={{ ...decorationAnimation }} />
         </Container>
     );
 }
@@ -64,8 +71,6 @@ const Container = styled.div`
     #page2WallPaperDecoration {
         width: 622px;
         height: 75px;
-        left: 978px;
-        top: 324px;
         background: #d6d16e;
         position: absolute;
         right: 320px;
