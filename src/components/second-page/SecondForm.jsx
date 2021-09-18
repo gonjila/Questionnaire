@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AiOutlineRight } from 'react-icons/ai';
 import styled from 'styled-components';
 

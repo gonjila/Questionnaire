@@ -1,8 +1,28 @@
+import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import Head from '../Head';
 import ForthForm from './ForthForm';
 
 function ForthPage() {
+    const decorationAnimation = useSpring({
+        from: {
+            x: '-120px',
+            y: '180px',
+            width: '229px',
+            height: '229px',
+            'border-radius': '50%',
+            // background: '#dd3939',
+        },
+        to: {
+            x: '0px',
+            y: '0px',
+            width: '288px',
+            height: '312px',
+            'border-radius': '0%',
+            // background: 'transparent',
+        },
+        config: { duration: 300 },
+    });
     return (
         <Container>
             <Head pageNumber={3} />
@@ -11,7 +31,11 @@ function ForthPage() {
                 <img src='images/doctor.svg' alt='doctor with Needle' />
             </div>
             <div id='page4WallPaperDecoration'>
-                <img src='images/goldenStar.svg' alt='doctor with Needle' />
+                <animated.img
+                    src='images/goldenStar.svg'
+                    alt='doctor with Needle'
+                    style={{ ...decorationAnimation }}
+                />
             </div>
         </Container>
     );

@@ -1,9 +1,16 @@
+import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 
 import Head from '../Head';
 import FifthForm from './FifthForm';
 
 function FifthPage() {
+    const decorationAnimation = useSpring({
+        from: { x: '-100px', y: '-150px', width: '288px', height: '312px' },
+        to: { x: '0px', y: '0px', width: '194.7px', height: '172px' },
+        config: { duration: 300 },
+    });
+
     return (
         <Container>
             <Head pageNumber={4} />
@@ -12,7 +19,7 @@ function FifthPage() {
                 <img src='images/biker.svg' alt='boy on bicycle' />
             </div>
             <div id='page5WallPaperDecoration'>
-                <img src='images/heart.svg' alt='boy on bicycle' />
+                <animated.img src='images/heart.svg' alt='boy on bicycle' style={{ ...decorationAnimation }} />
             </div>
         </Container>
     );

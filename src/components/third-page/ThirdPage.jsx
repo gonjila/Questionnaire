@@ -1,9 +1,23 @@
+import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 
 import Head from '../Head';
 import ThirdForm from './ThirdForm';
 
 function ThirdPage() {
+    const decorationAnimation = useSpring({
+        from: {
+            x: '50px',
+            y: '-70px',
+            width: '622px',
+            height: '75px',
+            'border-radius': '0%',
+            background: '#d6d16e',
+        },
+        to: { x: '0px', y: '0px', width: '229px', height: '229px', 'border-radius': '50%', background: '#dd3939' },
+        config: { duration: 300 },
+    });
+
     return (
         <Container>
             <Head pageNumber={2} />
@@ -12,7 +26,7 @@ function ThirdPage() {
             <div id='page3WallPaper'>
                 <img src='images/cold-boy.svg' alt='' />
             </div>
-            <div id='page3WallPaperDecoration' />
+            <animated.div id='page3WallPaperDecoration' style={{ ...decorationAnimation }} />
         </Container>
     );
 }
