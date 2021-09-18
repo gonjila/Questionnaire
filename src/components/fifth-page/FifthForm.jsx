@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AiOutlineLeft } from 'react-icons/ai';
 import styled from 'styled-components';
 
@@ -46,65 +46,85 @@ function FifthForm() {
             </p>
 
             <label>
-                <input value='კვირაში ორჯერ' type='radio' {...register('question1', { required: true })} />
+                <input
+                    value='კვირაში ორჯერ'
+                    type='radio'
+                    {...register('არაფორმალური_ონლაინ_შეხვედრები', { required: true })}
+                />
                 კვირაში ორჯერ
             </label>
 
             <label>
-                <input value='კვირაში ერთხელ' type='radio' {...register('question1', { required: true })} />
+                <input
+                    value='კვირაში ერთხელ'
+                    type='radio'
+                    {...register('არაფორმალური_ონლაინ_შეხვედრები', { required: true })}
+                />
                 კვირაში ერთხელ
             </label>
 
             <label>
-                <input value='ორ კვირაში ერთხელ' type='radio' {...register('question1', { required: true })} />
+                <input
+                    value='ორ კვირაში ერთხელ'
+                    type='radio'
+                    {...register('არაფორმალური_ონლაინ_შეხვედრები', { required: true })}
+                />
                 ორ კვირაში ერთხელ
             </label>
 
             <label>
-                <input value='თვეში ერთხელ' type='radio' {...register('question1', { required: true })} />
+                <input
+                    value='თვეში ერთხელ'
+                    type='radio'
+                    {...register('არაფორმალური_ონლაინ_შეხვედრები', { required: true })}
+                />
                 თვეში ერთხელ
             </label>
             {/* validation  */}
-            <div className='inputError'>{errors.question1 && <span>გთხოვთ, აირჩიე ერთ-ერთი</span>}</div>
+            <div className='inputError'>
+                {errors.არაფორმალური_ონლაინ_შეხვედრები && <span>გთხოვთ, აირჩიე ერთ-ერთი</span>}
+            </div>
 
             <p>კვირაში რამდენი დღე ისურვებდი ოფისიდან მუშაობას?*</p>
 
             <label>
-                <input value='0' type='radio' {...register('question2', { required: true })} />0
+                <input value='0' type='radio' {...register('ოფისიდან_მუშაობის_რაოდენობა', { required: true })} />0
             </label>
 
             <label>
-                <input value='1' type='radio' {...register('question2', { required: true })} />1
+                <input value='1' type='radio' {...register('ოფისიდან_მუშაობის_რაოდენობა', { required: true })} />1
             </label>
 
             <label>
-                <input value='2' type='radio' {...register('question2', { required: true })} />2
+                <input value='2' type='radio' {...register('ოფისიდან_მუშაობის_რაოდენობა', { required: true })} />2
             </label>
 
             <label>
-                <input value='3' type='radio' {...register('question2', { required: true })} />3
+                <input value='3' type='radio' {...register('ოფისიდან_მუშაობის_რაოდენობა', { required: true })} />3
             </label>
 
             <label>
-                <input value='4' type='radio' {...register('question2', { required: true })} />4
+                <input value='4' type='radio' {...register('ოფისიდან_მუშაობის_რაოდენობა', { required: true })} />4
             </label>
 
             <label>
-                <input value='5' type='radio' {...register('question2', { required: true })} />5
+                <input value='5' type='radio' {...register('ოფისიდან_მუშაობის_რაოდენობა', { required: true })} />5
             </label>
             {/* validation */}
-            <div className='inputError'>{errors.question2 && <span>გთხოვთ, აირჩიე ერთ-ერთი</span>}</div>
+            <div className='inputError'>
+                {errors.ოფისიდან_მუშაობის_რაოდენობა && <span>გთხოვთ, აირჩიე ერთ-ერთი</span>}
+            </div>
 
             <p>რას ფიქრობ ფიზიკურ შეკრებებზე?</p>
 
-            <textarea cols='30' rows='10' {...register('question3')} />
+            <textarea cols='30' rows='10' {...register('ფიზიკურ_შეკრებებზე')} />
 
             <p>
                 რას ფიქრობ არსებულ გარემოზე:
                 <br /> რა მოგწონს, რას დაამატებდი, რას შეცვლიდი?
             </p>
 
-            <textarea cols='30' rows='10' {...register('question4')} />
+            <textarea cols='30' rows='10' {...register('არსებულ_გარემოზე')} />
 
             <button type='button' className='prevPage' onClick={onPrevBtnClick}>
                 <AiOutlineLeft style={{ width: '100%', height: '100%' }} />

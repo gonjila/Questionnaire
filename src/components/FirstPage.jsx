@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 
 function FirstPage() {
     return (
         <Container>
             <img src='images/logo.svg' alt='ვარსკვლავისკენ მფრინავი კოსმონავტი' />
-            <Link exact to='/second-page'>
+            <Link to='/second-page'>
                 კითხვარის
                 <br /> დაწყება
             </Link>
